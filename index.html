@@ -14,7 +14,7 @@ html, body, #canvas {
 
 body {
 	color: white;
-	background-color: black;
+	background-color: #1A1D21 !important;
 	overflow: hidden;
 	touch-action: none;
 }
@@ -75,6 +75,24 @@ body {
 	bottom: 10%;
 	width: 50%;
 	margin: 0 auto;
+	height: 0.75rem;
+	appearance: none;
+	border: none;
+	background-color: rgba(255, 255, 255, 0.12);
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+#status-progress::-webkit-progress-bar {
+	background-color: rgba(255, 255, 255, 0.12);
+}
+
+#status-progress::-webkit-progress-value {
+	background-color: #FF6A00;
+}
+
+#status-progress::-moz-progress-bar {
+	background-color: #FF6A00;
 }
 
 #status-notice {
@@ -110,7 +128,7 @@ body {
 
 		<script src="showroom.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"showroom","experimentalVK":false,"fileSizes":{"showroom.pck":32143788,"showroom.wasm":1660816},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":true,"executable":"showroom","experimentalVK":false,"fileSizes":{"showroom.pck":32155780,"showroom.wasm":1660816},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4};
 const GODOT_THREADS_ENABLED = true;
 const engine = new Engine(GODOT_CONFIG);
 
