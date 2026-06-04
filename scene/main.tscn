@@ -1,0 +1,234 @@
+[gd_scene load_steps=24 format=3 uid="uid://0xvndix17b80"]
+
+[ext_resource type="Script" uid="uid://dx0v7rja8ytpy" path="res://scripts/main.gd" id="1_brvut"]
+[ext_resource type="Script" uid="uid://bb45kt6eknys7" path="res://scripts/camera_pivot.gd" id="1_v0l8b"]
+[ext_resource type="Script" uid="uid://dp2h6gkuabgbv" path="res://scripts/panel.gd" id="2_wp4xf"]
+[ext_resource type="PackedScene" uid="uid://dhm2a0mmxuha8" path="res://scene/abandon_mining_conveyor.tscn" id="4_tv8i1"]
+[ext_resource type="Texture2D" uid="uid://c42uft0k0y5t0" path="res://assets/kreator-logo.webp" id="5_smf0o"]
+[ext_resource type="Theme" uid="uid://sus3txriy3bi" path="res://theme/inter.tres" id="6_of57s"]
+[ext_resource type="StyleBox" uid="uid://cm7eq5kr6q6bg" path="res://theme/panel.tres" id="7_wscrc"]
+[ext_resource type="StyleBox" uid="uid://dj6li8r22e1rg" path="res://theme/buttonpressed.tres" id="8_k65ib"]
+[ext_resource type="StyleBox" uid="uid://up3ys4m6ttjk" path="res://theme/buttonhover.tres" id="9_wscrc"]
+[ext_resource type="StyleBox" uid="uid://b3n8bt7wrw8yp" path="res://theme/buttonfocus.tres" id="10_wscrc"]
+[ext_resource type="StyleBox" uid="uid://qgc1jvqsjsqs" path="res://theme/button.tres" id="11_mswub"]
+[ext_resource type="Texture2D" uid="uid://blk56qt2va1dw" path="res://assets/arrow-left.webp" id="12_smf0o"]
+[ext_resource type="Texture2D" uid="uid://bqrag7jdbikx7" path="res://assets/arrow-right.webp" id="13_tv8i1"]
+[ext_resource type="Texture2D" uid="uid://cv60iplv4g0ms" path="res://assets/share.webp" id="13_v2gmf"]
+[ext_resource type="FontFile" uid="uid://bqxw3mqiklw0g" path="res://assets/Inter-VariableFont_opsz,wght.ttf" id="14_v2gmf"]
+[ext_resource type="Texture2D" uid="uid://21qkxkimk6si" path="res://assets/grid-texture.webp" id="17_tv8i1"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_v0l8b"]
+sky_top_color = Color(0.050980393, 0.05882353, 0.07058824, 1)
+sky_horizon_color = Color(0.101960786, 0.11372549, 0.12941177, 1)
+sky_energy_multiplier = 0.8
+ground_bottom_color = Color(0.050980393, 0.05882353, 0.07058824, 1)
+ground_horizon_color = Color(0.101960786, 0.11372549, 0.12941177, 1)
+ground_curve = 0.15
+ground_energy_multiplier = 0.8
+energy_multiplier = 0.75
+
+[sub_resource type="Sky" id="Sky_wp4xf"]
+sky_material = SubResource("ProceduralSkyMaterial_v0l8b")
+
+[sub_resource type="Environment" id="Environment_brvut"]
+background_mode = 2
+sky = SubResource("Sky_wp4xf")
+ambient_light_source = 3
+ambient_light_color = Color(0.851769, 0.8517689, 0.85176885, 1)
+reflected_light_source = 2
+tonemap_mode = 2
+ssao_enabled = true
+ssao_radius = 0.5
+
+[sub_resource type="SystemFont" id="SystemFont_v2gmf"]
+
+[sub_resource type="SystemFont" id="SystemFont_jcbur"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0ha60"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1hux"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.49803922)
+albedo_texture = ExtResource("17_tv8i1")
+uv1_scale = Vector3(30, 30, 30)
+uv1_triplanar = true
+texture_filter = 4
+proximity_fade_distance = 95.16
+distance_fade_mode = 1
+distance_fade_min_distance = 10.0
+distance_fade_max_distance = 80.0
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_brvut")
+model_catalog = Array[PackedScene]([ExtResource("4_tv8i1")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_brvut")
+
+[node name="CameraPivot" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.854008, 0)
+script = ExtResource("1_v0l8b")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot"]
+
+[node name="Camera3D" type="Camera3D" parent="CameraPivot/SpringArm3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 112.40762)
+far = 300.0
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Logo" type="TextureRect" parent="UI"]
+offset_left = 8.0
+offset_top = -9.0
+offset_right = 136.0
+offset_bottom = 55.0
+texture = ExtResource("5_smf0o")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -195.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 72.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme = ExtResource("6_of57s")
+theme_override_styles/panel = ExtResource("7_wscrc")
+script = ExtResource("2_wp4xf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="RotateLabel" type="Label" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Rotate Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ZoomLabel" type="Label" parent="UI/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Zoom Label"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LeftButton" type="Button" parent="UI"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 20.0
+offset_top = -18.0
+offset_right = 56.0
+offset_bottom = 18.0
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_v2gmf")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("11_mswub")
+theme_override_styles/pressed = ExtResource("11_mswub")
+theme_override_styles/hover = ExtResource("9_wscrc")
+theme_override_styles/focus = ExtResource("10_wscrc")
+icon = ExtResource("12_smf0o")
+icon_alignment = 1
+
+[node name="RightButton" type="Button" parent="UI"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = -18.0
+offset_right = -20.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_fonts/font = SubResource("SystemFont_jcbur")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("11_mswub")
+theme_override_styles/pressed = ExtResource("11_mswub")
+theme_override_styles/hover = ExtResource("9_wscrc")
+theme_override_styles/focus = ExtResource("10_wscrc")
+text = "
+"
+icon = ExtResource("13_tv8i1")
+icon_alignment = 1
+
+[node name="ShareButton" type="Button" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -41.0
+offset_top = -41.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/normal = ExtResource("11_mswub")
+theme_override_styles/pressed = ExtResource("8_k65ib")
+theme_override_styles/hover = ExtResource("9_wscrc")
+theme_override_styles/focus = ExtResource("10_wscrc")
+icon = ExtResource("13_v2gmf")
+icon_alignment = 1
+
+[node name="NameLabel" type="Label" parent="UI"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -29.0
+offset_top = 5.0
+offset_right = 29.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("14_v2gmf")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("7_wscrc")
+text = "Name"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ToastLabel" type="Label" parent="UI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -18.0
+offset_right = 36.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("14_v2gmf")
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = ExtResource("7_wscrc")
+text = "Toast"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 10, 10)
+shadow_enabled = true
+directional_shadow_mode = 0
+directional_shadow_blend_splits = true
+directional_shadow_max_distance = 50.0
+directional_shadow_pancake_size = 2.0
+sky_mode = 1
+
+[node name="FloorGrid" type="MeshInstance3D" parent="."]
+transform = Transform3D(200, 0, 0, 0, 1, 0, 0, 0, 200, 0, 0.1, 0)
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_0ha60")
+surface_material_override/0 = SubResource("StandardMaterial3D_p1hux")

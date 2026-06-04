@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhm2a0mmxuha8"]
+
+[ext_resource type="PackedScene" uid="uid://b6xc5pw44ugis" path="res://assets/abadonded_mining_conveyor.glb" id="1_ancwk"]
+
+[node name="TEST_MODEL_Abandon_Mining_Conveyor" instance=ExtResource("1_ancwk")]
+transform = Transform3D(1, 0, 0, 0, 0.99978065, -0.02094242, 0, 0.02094242, 0.99978065, 0, 0, 0)
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(-1.9207566, 0.005803261, -2.0373168, 0.053740904, -2.79887, -0.05863878, -2.036616, -0.07932788, 1.91987, 2.2795277, -6.1200004, -10.69)
